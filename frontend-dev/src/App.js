@@ -1,12 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+const API_KET = 'apiKey'
 
-const App = () => {
-  return (
-    <div className="app">
-      
-    </div>
-  );
+const summitButton=document.querySelector('#submit')
+
+
+async function fetchData(){
+  const response=await fetch("https://api.openai.com/v1/chat/completions",{
+    method:"POST",
+    headers:{
+      Authorization:"Bearer ${API_KEY}",
+      "Content-Type":"application/json"
+
+    },
+    body:JSON.stringify({
+      model:"gpt-4",
+      messages:[
+        {
+          role:"user",
+          content: "Hello!"
+        }]
+    })
+  })
+  const data=await response.json()
+  console.log(data)
+}
+async function getmessage() {
+  console.log('clicked')
+  try {
+    
+  } catch (error) {
+    
+  }
+  
 }
 
-export default App;
+summitButton.addEventListener('click',getmessage)
+fetchData()
